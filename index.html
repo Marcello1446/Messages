@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гостевая книга</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        form { margin-bottom: 20px; }
+        input, textarea, button { margin: 5px; padding: 10px; }
+        .message { border-bottom: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Гостевая книга</h1>
+
+<!-- Форма для отправки сообщений -->
+<form action="/send" method="post">
+    <input type="text" name="name" placeholder="Ваше имя" required>
+    <br>
+    <textarea name="message" placeholder="Введите сообщение" required></textarea>
+    <br>
+    <button type="submit">Оставить сообщение</button>
+</form>
+
+<!-- Вывод сообщений -->
+<h2>Все сообщения:</h2>
+{{range $name, $message := .}}
+<div class="message">
+    <strong>{{$name}}</strong>: {{$message}}
+</div>
+{{end}}
+
+<!-- Кнопка для очистки сообщений -->
+<form action="/clear" method="post">
+    <button type="submit">Очистить все сообщения</button>
+</form>
+
+</body>
+</html>
